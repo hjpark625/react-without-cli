@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   function onIncrement() {
-    setCount(count + 1);
+    setCount(count + 1)
   }
   function onDecrement() {
-    setCount(count - 1);
+    setCount(count - 1)
   }
 
   return (
@@ -20,7 +20,7 @@ function Counter() {
         +1
       </button>
     </div>
-  );
+  )
 }
 
-export default Counter;
+export default Counter
