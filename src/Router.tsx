@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainPage from '@/pages/MainPage'
 import CounterPage from '@/pages/CounterPage'
-import '@/styles/reset.css'
+import '@/styles/main.css'
 
 const routes = createBrowserRouter([
   {
