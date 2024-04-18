@@ -1,13 +1,13 @@
 import * as path from 'path'
-import * as webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import type { Configuration } from 'webpack'
 import 'webpack-dev-server'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function (env: Record<string, any>, args: Record<string, any>): webpack.Configuration {
+export default function (env: Record<string, any>, args: Record<string, any>): Configuration {
   const isProduction = args.mode === 'production'
 
   return {
