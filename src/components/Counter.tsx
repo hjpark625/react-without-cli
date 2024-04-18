@@ -11,12 +11,20 @@ function Counter() {
   }
 
   return (
-    <div>
-      <button type="button" onClick={onDecrement}>
+    <div className="w-[300px] mx-auto">
+      <button
+        className="w-[50px] h-[50px] rounded-[4px] border-solid border border-black bg-slate-300"
+        type="button"
+        onClick={onDecrement}
+      >
         -1
       </button>
-      <span>{count}</span>
-      <button type="button" onClick={onIncrement}>
+      <span className="text-lg">{count}</span>
+      <button
+        className="w-[50px] h-[50px] rounded-[4px] border-solid border border-black bg-slate-300"
+        type="button"
+        onClick={onIncrement}
+      >
         +1
       </button>
     </div>
