@@ -1,7 +1,9 @@
+import { lazy } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MainPage from '@/pages/MainPage'
-import CounterPage from '@/pages/CounterPage'
 import '@/styles/main.css'
+
+const CounterPage = lazy(() => /* webpackChunkName: "counter_page" */ import('@/pages/CounterPage'))
+const MainPage = lazy(() => /* webpackChunkName: "main_page" */ import('@/pages/MainPage'))
 
 const routes = createBrowserRouter([
   {
