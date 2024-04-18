@@ -2,8 +2,11 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = (env, args) => {
+  const isProduction = args.mode === 'production'
+
   return {
     mode: args.mode,
     entry: './src/index.tsx',
@@ -16,7 +19,8 @@ module.exports = (env, args) => {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'public/index.html'),
         filename: 'index.html'
-      })
+      }),
+      isProduction ? new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }) : undefined
     ],
     optimization: {
       minimize: true,
@@ -59,7 +63,7 @@ module.exports = (env, args) => {
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader', 'postcss-loader']
+          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'postcss-loader']
         }
       ]
     },
