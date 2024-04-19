@@ -27,7 +27,18 @@ export default function (env: Record<string, any>, args: Record<string, any>): C
     ],
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin()],
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              drop_console: isProduction
+            },
+            output: {
+              comments: !isProduction
+            }
+          }
+        })
+      ],
       splitChunks: {
         chunks: 'all', // 모든 종류의 청크에 대해 코드 스플릿팅 적용
         minSize: 20000, // 최소 20KB가 넘는 모듈만 분리
