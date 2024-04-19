@@ -14,7 +14,7 @@ export default function (env: Record<string, any>, args: Record<string, any>): C
     mode: args.mode,
     entry: './src/index.tsx',
     output: {
-      filename: 'static/js/[name].[contenthash].js',
+      filename: 'static/js/[name].[contenthash:8].js',
       path: path.resolve(__dirname, 'dist')
     },
     plugins: [
@@ -23,7 +23,7 @@ export default function (env: Record<string, any>, args: Record<string, any>): C
         template: path.resolve(__dirname, 'public/index.html'),
         filename: 'index.html'
       }),
-      isProduction ? new MiniCssExtractPlugin({ filename: 'static/css/[name].[contenthash].css' }) : undefined
+      isProduction ? new MiniCssExtractPlugin({ filename: 'static/css/[name].[contenthash:8].css' }) : undefined
     ],
     optimization: {
       minimize: true,
