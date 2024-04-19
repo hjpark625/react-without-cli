@@ -24,5 +24,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(3001, () => {
-  console.log(`Server is running on port ${chalk.blue('3001')}`)
+  console.log(chalk.green(`Server is running on port ${chalk.blue('3001')}`))
 })
