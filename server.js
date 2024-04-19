@@ -20,7 +20,7 @@ if (!fs.existsSync(distPath) || !fs.existsSync(indexHtmlPath)) {
 app.use(express.static(distPath))
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+  res.sendFile(path.resolve(distPath, 'index.html'))
 })
 
 app.listen(3001, () => {
