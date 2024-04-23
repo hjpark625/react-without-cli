@@ -5,6 +5,7 @@ import { all } from 'redux-saga/effects'
 import { createLogger } from 'redux-logger'
 
 import counterReducer, { counterSaga } from '@/store/counter'
+import storeDetailReducer, { storeDetailSaga } from '@/store/detail'
 
 const env = process.env.NODE_ENV
 
@@ -12,11 +13,12 @@ const logger = createLogger()
 const sagaMiddleWare = createSagaMiddleware()
 
 const rootReducer = combineReducers({
-  counter: counterReducer
+  counter: counterReducer,
+  storeDetail: storeDetailReducer
 })
 
 function* rootSaga() {
-  yield all([counterSaga()])
+  yield all([counterSaga(), storeDetailSaga()])
 }
 
 const store = configureStore({
