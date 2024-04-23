@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import { useAppDispatch } from '@/store'
-import { increase, decrease, increaseBy, decreaseBy } from '@/store/counter'
+import { increase, decrease, increaseBy, decreaseBy, increaseAsync, decreaseAsync } from '@/store/counter'
 
 import type { RootState } from '@/store'
 
@@ -21,9 +21,15 @@ function Counter() {
   function onDecrementBy(value: number) {
     dispatch(decreaseBy(value))
   }
+  function onIncrementAsync() {
+    dispatch(increaseAsync())
+  }
+  function onDecrementAsync() {
+    dispatch(decreaseAsync())
+  }
 
   return (
-    <div className="w-[300px] mx-auto">
+    <div className="w-full mx-auto">
       <button
         className="w-[50px] h-[50px] rounded-[4px] border-solid border border-black bg-slate-300"
         type="button"
@@ -38,7 +44,21 @@ function Counter() {
       >
         -5
       </button>
+      <button
+        className="w-[100px] h-[50px] rounded-[4px] border-solid border border-black bg-slate-300"
+        type="button"
+        onClick={onDecrementAsync}
+      >
+        decrease Async
+      </button>
       <span className="text-lg">{count}</span>
+      <button
+        className="w-[100px] h-[50px] rounded-[4px] border-solid border border-black bg-slate-300"
+        type="button"
+        onClick={onIncrementAsync}
+      >
+        increase Async
+      </button>
       <button
         className="w-[50px] h-[50px] rounded-[4px] border-solid border border-black bg-slate-300"
         type="button"
