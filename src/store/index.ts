@@ -4,13 +4,21 @@ import logger from 'redux-logger'
 
 import counterReducer from '@/store/counter'
 
+const env = process.env.NODE_ENV
+
 const rootReducer = combineReducers({
   counter: counterReducer
 })
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+  middleware: (getDefaultMiddleware) => {
+    const middlewares = []
+    if (env !== 'production') {
+      middlewares.push(logger)
+    }
+    return getDefaultMiddleware().concat(middlewares)
+  }
 })
 type AppDispatch = typeof store.dispatch
 
