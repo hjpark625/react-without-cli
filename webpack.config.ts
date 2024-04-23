@@ -14,6 +14,7 @@ export default function (env: Record<string, any>, args: Record<string, any>): C
     mode: args.mode,
     entry: './src/index.tsx',
     output: {
+      publicPath: '/',
       filename: 'static/js/[name].[contenthash:8].js',
       path: path.resolve(__dirname, 'dist')
     },
