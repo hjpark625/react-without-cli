@@ -6,6 +6,7 @@ import '@/styles/main.css'
 
 const CounterPage = lazy(() => import(/* webpackChunkName: "counter_page" */ '@/pages/CounterPage'))
 const MainPage = lazy(() => import(/* webpackChunkName: "main_page" */ '@/pages/MainPage'))
+const DetailPage = lazy(() => import(/* webpackChunkName: "detail_page" */ '@/pages/DetailPage'))
 
 const routes = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const routes = createBrowserRouter([
   {
     path: '/counter',
     element: <CounterPage />
+  },
+  {
+    path: '/detail/:storename',
+    element: <DetailPage />
   }
 ])
 
