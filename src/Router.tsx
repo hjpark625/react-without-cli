@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { lazy, StrictMode } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '@/store'
@@ -25,9 +25,11 @@ const routes = createBrowserRouter([
 
 function Router() {
   return (
-    <Provider store={store}>
-      <RouterProvider router={routes} />
-    </Provider>
+    <StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={routes} />
+      </Provider>
+    </StrictMode>
   )
 }
 
