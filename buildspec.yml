@@ -24,6 +24,6 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: base_location
+  base-directory: dist
   name: build
   discard-paths: no
