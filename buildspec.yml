@@ -4,20 +4,15 @@ phases:
   install:
     runtime-versions:
       nodejs: 21
-    commands:
-      - echo Installing source NPM dependencies `date`
-      - node --version
-      - npm install -g pnpm
-      - pnpm --version
-      - pnpm install
     pre_build:
       commands:
-        - echo Building the source on `date`
+        - node --version
+        - npm install -g pnpm
+        - pnpm --version
+        - pnpm install
     build:
       commands:
-        - echo Build started on `date`
         - pnpm run build
-        - echo "Build completed on `date`"
     post_build:
       commands:
         - echo Build completed on `date`
