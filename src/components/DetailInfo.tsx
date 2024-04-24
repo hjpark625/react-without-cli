@@ -20,19 +20,21 @@ function DetailInfo({ detail }: DetailInfoProps) {
       <div>phoneNumber: {detail.phoneNumber}</div>
       <div>
         operationTime:{' '}
-        {detail.operationTime.map(({ day, startTime, endTime }) => (
-          <div key={day}>
-            <div>day: {day}</div>
-            {startTime && endTime ? (
-              <>
-                <div>startTime: {startTime}</div>
-                <div>endTime: {endTime}</div>
-              </>
-            ) : (
-              '휴무'
-            )}
-          </div>
-        ))}
+        <ul>
+          {detail.operationTime.map(({ day, startTime, endTime }) => (
+            <li key={day}>
+              day: {day}
+              {startTime && endTime ? (
+                <>
+                  <div>startTime: {startTime}</div>
+                  <div>endTime: {endTime}</div>
+                </>
+              ) : (
+                '휴무'
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
       <div>coord: {`{ lat: ${detail.coord.lat}, lng: ${detail.coord.lng} }`}</div>
       <div>introduce: {detail.introduce ?? '없음'}</div>
