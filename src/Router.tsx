@@ -24,7 +24,6 @@ const routes = createBrowserRouter([
 ])
 
 function Router() {
-  // test
   return (
     <StrictMode>
       <Provider store={store}>
