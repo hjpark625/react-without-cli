@@ -24,8 +24,8 @@ function* rootSaga() {
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => {
-    const middlewares = []
-    middlewares.push(sagaMiddleWare)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const middlewares: any[] = [sagaMiddleWare]
     if (env !== 'production') {
       middlewares.push(logger)
     }
