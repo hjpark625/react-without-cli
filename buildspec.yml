@@ -24,6 +24,8 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: dist
-  name: build
-  discard-paths: no
+  base-directory: build/
+
+cache:
+  paths:
+    - '/root/.pnpm-store/**/*'
