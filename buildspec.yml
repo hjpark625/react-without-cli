@@ -4,17 +4,17 @@ phases:
   install:
     runtime-versions:
       nodejs: 21
-    pre_build:
-      commands:
-        - node --version
-        - npm install -g pnpm
-        - pnpm --version
-        - pnpm install
-    build:
-      commands:
-        - pnpm run build
-    post_build:
-      commands:
-        - echo Build completed on `date`
-        - aws s3 cp $CODEBUILD_SRC_DIR/dist $DEPLOY_TARGET_S3_URI --recursive
-        - aws cloudfront create-invalidation --distribution-id $DEPLOY_CLOUDFRONT_DIST_ID --paths '/index.html'
+  pre_build:
+    commands:
+      - node --version
+      - npm install -g pnpm
+      - pnpm --version
+      - pnpm install
+  build:
+    commands:
+      - pnpm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - aws s3 cp $CODEBUILD_SRC_DIR/dist $DEPLOY_TARGET_S3_URI --recursive
+      - aws cloudfront create-invalidation --distribution-id $DEPLOY_CLOUDFRONT_DIST_ID --paths '/index.html'
