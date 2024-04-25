@@ -1,7 +1,5 @@
-import { lazy, StrictMode } from 'react'
+import { lazy } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import store from '@/store'
 import '@/styles/main.css'
 
 const CounterPage = lazy(() => import(/* webpackChunkName: "counter_page" */ '@/pages/CounterPage'))
@@ -24,13 +22,7 @@ const routes = createBrowserRouter([
 ])
 
 function Router() {
-  return (
-    <StrictMode>
-      <Provider store={store}>
-        <RouterProvider router={routes} />
-      </Provider>
-    </StrictMode>
-  )
+  return <RouterProvider router={routes} />
 }
 
 export default Router
