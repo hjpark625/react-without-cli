@@ -1,4 +1,5 @@
 import * as path from 'path'
+import { SourceMapDevToolPlugin } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
@@ -20,6 +21,11 @@ export default function (env: Record<string, any>, args: Record<string, any>): C
     },
     plugins: [
       new CleanWebpackPlugin(),
+      new SourceMapDevToolPlugin({
+        filename: 'static/js/sourcemaps/[name].[contenthash:8].js.map',
+        publicPath: '/',
+        fileContext: 'public'
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'public/index.html'),
         filename: 'index.html'
