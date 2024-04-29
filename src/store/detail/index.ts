@@ -1,4 +1,5 @@
 import { isAxiosError } from 'axios'
+import { produce } from 'immer'
 import { createAction, createReducer } from '@reduxjs/toolkit'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { fetchDetailData } from '@/api/detail'
@@ -45,20 +46,23 @@ const initialState: { detail: Store | null; status: 'idle' | 'loading' | 'succes
 
 const storeDetailReducer = createReducer(initialState, (builder) =>
   builder
-    .addCase(getDetail, (state) => ({
-      ...state,
-      status: 'loading'
-    }))
-    .addCase(getDetailSuccess, (state, { payload }) => ({
-      ...state,
-      status: 'success',
-      detail: payload
-    }))
-    .addCase(getDetailError, (state, { payload }) => ({
-      ...state,
-      status: 'error',
-      errorMsg: payload.response?.data.detail.message ?? '알 수 없는 에러'
-    }))
+    .addCase(getDetail, (state) =>
+      produce(state, (draft) => {
+        draft.status = 'loading'
+      })
+    )
+    .addCase(getDetailSuccess, (state, { payload }) =>
+      produce(state, (draft) => {
+        draft.status = 'success'
+        draft.detail = payload
+      })
+    )
+    .addCase(getDetailError, (state, { payload }) =>
+      produce(state, (draft) => {
+        draft.status = 'error'
+        draft.errorMsg = payload.response?.data.detail.message ?? '알 수 없는 에러'
+      })
+    )
     .addDefaultCase((state) => state)
 )
 
