@@ -1,3 +1,4 @@
+import { produce } from 'immer'
 import { createAction, createReducer } from '@reduxjs/toolkit'
 import { delay, put, takeLatest } from 'redux-saga/effects'
 
@@ -36,22 +37,26 @@ const initialState: { count: number } = {
 
 const counterReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(increase, (state) => ({
-      ...state,
-      count: state.count + 1
-    }))
-    .addCase(decrease, (state) => ({
-      ...state,
-      count: state.count - 1
-    }))
-    .addCase(increaseBy, (state, { payload }) => ({
-      ...state,
-      count: state.count + payload
-    }))
-    .addCase(decreaseBy, (state, { payload }) => ({
-      ...state,
-      count: state.count - payload
-    }))
+    .addCase(increase, (state) =>
+      produce(state, (draft) => {
+        draft.count += 1
+      })
+    )
+    .addCase(decrease, (state) =>
+      produce(state, (draft) => {
+        draft.count -= 1
+      })
+    )
+    .addCase(increaseBy, (state, { payload }) =>
+      produce(state, (draft) => {
+        draft.count += payload
+      })
+    )
+    .addCase(decreaseBy, (state, { payload }) =>
+      produce(state, (draft) => {
+        draft.count -= payload
+      })
+    )
     .addDefaultCase((state) => state)
 })
 
